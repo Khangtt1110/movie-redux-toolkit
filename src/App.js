@@ -1,4 +1,3 @@
-import { Button } from 'semantic-ui-react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from '~/components/Header/Header';
 import Home from './components/Home/Home';
@@ -14,7 +13,9 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/movie/:imdbID" element={<MovieDetail />} />
-                    <Route element={<PageNotFound />} />
+                    {/* Switch to Home page */}
+                    {/* <Route path="*" element={<Navigate to="/" />} /> */}
+                    <Route path="*" element={<PageNotFound />} />
                 </Routes>
                 <Footer />
             </Router>

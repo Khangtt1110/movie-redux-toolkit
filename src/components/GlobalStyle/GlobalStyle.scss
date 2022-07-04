@@ -1,5 +1,6 @@
 @import 'normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+@import '../../common/colors.scss';
 
 :root {
     --primary: #d61920;
@@ -31,4 +32,5 @@ body {
     text-rendering: optimizeSpeed;
     color: var(--text-color);
     overflow-x: overlay;
+    // background: $primary-color !important;
 }
