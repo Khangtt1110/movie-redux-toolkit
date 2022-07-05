@@ -1,11 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Grid, Card, Image } from 'semantic-ui-react';
 
 const MovieCard = (props) => {
     const { data } = props;
-    console.log(data);
     return (
-        <Grid.Column computer={4} tablet={5} mobile={8}>
+        <Link to={`/movie/${data.imdbID}`}>
             <Card>
                 <Image src={data.Poster} wrapped ui={true} />
                 <Card.Content>
@@ -14,7 +14,7 @@ const MovieCard = (props) => {
                     <Card.Description>{data.Type}</Card.Description>
                 </Card.Content>
             </Card>
-        </Grid.Column>
+        </Link>
     );
 };
 

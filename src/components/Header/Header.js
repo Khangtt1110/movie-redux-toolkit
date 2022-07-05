@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
-import { Menu, Segment, Image, Grid } from 'semantic-ui-react';
+import { Menu, Segment, Input, Form } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import user from '~/images/user.png';
+import { useDispatch } from 'react-redux';
+import { fetchAsyncMovies, fetchAsyncSeries } from '~/features/movies/movieSlice';
 
 const Header = () => {
     const [active, setActive] = useState('home');
+    const [searchValue, setSearchValue] = useState('');
+    const dispatch = useDispatch();
+    const submitHandler = (e) => {
+        e.preventDefault();
+        dispatch(fetchAsyncMovies(searchValue));
+        dispatch(fetchAsyncSeries(searchValue));
+        setSearchValue('');
+    };
     const handleItemClick = (e, { name }) => setActive(name);
     const activeItem = active;
     return (
@@ -24,6 +34,18 @@ const Header = () => {
 
                 <Menu.Item name="sign-in" active={activeItem === 'sign-in'} onClick={handleItemClick}>
                     <Link to="sign up">Sign in</Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <Form unstackable onSubmit={submitHandler}>
+                        <Input
+                            action={{ icon: 'search' }}
+                            placeholder="Search..."
+                            value={searchValue}
+                            onChange={(e) => {
+                                setSearchValue(e.target.value);
+                            }}
+                        />
+                    </Form>
                 </Menu.Item>
             </Menu>
         </Segment>
